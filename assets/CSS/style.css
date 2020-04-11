@@ -4,9 +4,13 @@
     width: 100%;
 } */
 .card{
-    background-color: lightskyblue;
-    color: rgb(116, 59, 59);
+    background-color: rgb(54, 75, 136);
+    color: white;
     width: 33%;
     display: flex;
     float: left;
+}
+.jumbotron{
+    background-color: rgb(54, 75, 136);
+    color: silver;
 }
