@@ -1,0 +1,12 @@
+/* #alldayforecast{
+    display: flex;
+    float: left;
+    width: 100%;
+} */
+.card{
+    background-color: lightskyblue;
+    color: rgb(116, 59, 59);
+    width: 33%;
+    display: flex;
+    float: left;
+}
