@@ -11,19 +11,33 @@
     <div class="jumbotron">
         <h1>Weather Forecast</h1>
     </div>
-    <div id="previousSearch"></div>
+
     <div class="container">
         <div class="row">
+            <div class="col-md-12">
+                <h2>Previous Search</h2>
+                <div id="previousSearch"></div>
+                <br />
+                <br />
+                <button id="clearLocalStorage" class="btn btn-danger">Clear Previous Search</button>
+            </div>
+        </div>
+        <div class="row">
             <div class="col-md-4">
-                <input id="cityName" type="text">
-                <button id="searchWeather">search</button>
+                <br />
+                <input id="cityName" type="text" placeholder="City name">
+                <button id="searchWeather" class="btn btn-primary">Search</button>
             </div>
             <div class="col-md-8">
+                <br />
+                 <br />
                 <div id="currentweather"></div>
             </div>
         </div>
         <div class="row">
             <div class="col-md-12">
+                <br />
+                <br />
                 <div id="5dayforecast">
                 </div>
             </div>

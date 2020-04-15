@@ -18,8 +18,11 @@ function currentForecast(cityName){
         success:function(data){
             console.log(data)
             var previoushistory = searchhistory;
-            previoushistory.push(cityName);
-            localStorage.setItem("mycities",JSON.stringify(previoushistory))
+            if (previoushistory.indexOf(cityName)== -1){
+                previoushistory.push(cityName);
+                localStorage.setItem("mycities",JSON.stringify(previoushistory))
+         
+            }
             $("#currentweather").empty()
             $("#currentweather").append(`
             <div class="card">
@@ -67,6 +70,10 @@ function displaylocalstorage(){
         $("#previousSearch").append(`
         <button class="searchedCity btn btn-warning" data-attributes="${searchhistory[i]}">${searchhistory[i]}</button>`)
     }
+    if (searchhistory.length > 0){
+        currentForecast(searchhistory[searchhistory.length-1]);
+        fivedayforecast(searchhistory[searchhistory.length-1]);
+    }
 }
 
 displaylocalstorage ()
@@ -76,4 +83,9 @@ $("#previousSearch").on("click",".searchedCity",function(){
    var cityName = $(this).attr("data-attributes");
    currentForecast(cityName)
    fivedayforecast(cityName)
+})
+
+$("#clearLocalStorage").on("click", function(){
+    localStorage.removeItem("mycities")
+    location.reload()
 })
