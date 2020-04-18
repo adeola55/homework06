@@ -9,7 +9,7 @@ $("#searchWeather").on("click",function(){
 })
 function currentForecast(cityName){
     var cityname = cityName
-    var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=8b1b7b8197776273d463c896bea2dd57&units=imperial"
+    var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=8b1b7b8197776273d463c896bea2dd57&units=imperial"
     // var queryURL = `https://api.openweathermap.org/data/2.5/weather?q=${cityname}&appid=${apikey}&units=imperial`
     $.ajax({
         type: "GET",
@@ -29,7 +29,7 @@ function currentForecast(cityName){
             <h1>${cityName}</h1>
             <h4>${data.weather[0].main}</h4>
             <h3>${data.main.temp}°F</h3>
-            <img src="http://openweathermap.org/img/wn/${data.weather[0].icon}.png" width="100"/>
+            <img src="https://openweathermap.org/img/wn/${data.weather[0].icon}.png" width="100"/>
             <p>${data.wind.speed}MPH<p>
             `)
         }
@@ -55,7 +55,7 @@ function fivedayforecast(cityName){
                 <h1>${forecast[i].dt_txt}</h1>
                 <h4>${forecast[i].weather[0].main}</h4>
                 <h3>${forecast[i].main.temp}°F</h3>
-                <img src="http://openweathermap.org/img/wn/${forecast[i].weather[0].icon}.png" width="100"/>
+                <img src="https://openweathermap.org/img/wn/${forecast[i].weather[0].icon}.png" width="100"/>
                 <p>${forecast[i].wind.speed}MPH<p>
                 `)
                 }
