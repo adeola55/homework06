@@ -21,8 +21,12 @@ function currentForecast(cityName){
             if (previoushistory.indexOf(cityName)== -1){
                 previoushistory.push(cityName);
                 localStorage.setItem("mycities",JSON.stringify(previoushistory))
-         
+                 displaylocalstorage()
             }
+            var lat = data.coord.lat
+            var lon = data.coord.lon
+
+            displayUVindex(lat,lon)
             $("#currentweather").empty()
             $("#currentweather").append(`
             <div class="card">
@@ -35,7 +39,28 @@ function currentForecast(cityName){
         }
     })
 }
-
+function displayUVindex(lat,lon){
+    var queryURL = "https://api.openweathermap.org/data/2.5/uvi?appid="+apikey+"&lat=" + lat + "&lon=" + lon+"&units=imperial"
+        $.ajax({
+        type: "GET",
+        url:queryURL,
+        dataType:"JSON",
+        success:function(data){
+            console.log("UV",data)
+            $(`#UVindex`).empty()
+            $("#UVindex").append(`<h4>UVindex:${data.value}</h4>`)
+            if (data.value < 3){
+                $("#UVindex").append(`<button class="btn btn-success"><button>`)
+            }
+            else if(data.value < 7){
+                $("#UVindex").append(`<button class="btn btn-warning btn-lg"><button>`)
+            }
+            else {
+                $("#UVindex").append(`<button class="btn btn-danger btn-lg"><button>`)
+            }
+        }
+    })
+}
 function fivedayforecast(cityName){
     var queryURL = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${apikey}&units=imperial`
 
@@ -66,6 +91,7 @@ function fivedayforecast(cityName){
 var searchhistory = JSON.parse(localStorage.getItem("mycities")) || []
 function displaylocalstorage(){
     console.log(localStorage.getItem("mycities"),searchhistory)
+   $(`#previousSearch`).empty()
     for (let i = 0; i < searchhistory.length; i++){
         $("#previousSearch").append(`
         <button class="searchedCity btn btn-warning" data-attributes="${searchhistory[i]}">${searchhistory[i]}</button>`)
